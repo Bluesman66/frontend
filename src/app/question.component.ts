@@ -22,4 +22,8 @@ export class QuestionComponent implements OnInit {
     post(question) {
         this.api.postQuestion(question);
     }
+
+    put(question) {
+        this.api.putQuestion(question);
+    }
 }
