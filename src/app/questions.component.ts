@@ -11,7 +11,7 @@ export class QuestionsComponent implements OnInit {
     question = {};
     questions;
 
-    constructor(private api: ApiService) { }
+    constructor(public api: ApiService) { }
 
     ngOnInit(): void {
         this.api.getQuestions()
