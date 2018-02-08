@@ -1,18 +1,18 @@
-<md-card>
-    <md-card-title>
+<mat-card>
+    <mat-card-title>
         <span *ngIf="quiz.id">Edit Quiz</span>
         <span *ngIf="!quiz.id">New Quiz</span>
-    </md-card-title>
-    <md-card-content>
+    </mat-card-title>
+    <mat-card-content>
         <form>
-            <md-form-field class="fullWidth">
-                <input [(ngModel)]="quiz.title" name="title" mdInput placeholder="Quiz Title">
-            </md-form-field>
+            <mat-form-field class="fullWidth">
+                <input [(ngModel)]="quiz.title" name="title" matInput placeholder="Quiz Title">
+            </mat-form-field>
         </form>
-    </md-card-content>
-    <md-card-actions>
-        <button *ngIf="quiz.id" (click)="null" md-button>EDIT</button>
-        <button *ngIf="quiz.id" (click)="null" md-button>NEW</button>
-        <button *ngIf="!quiz.id" (click)="null" md-button>POST</button>
-    </md-card-actions>
-</md-card>
+    </mat-card-content>
+    <mat-card-actions>
+        <button *ngIf="quiz.id" (click)="null" mat-button>EDIT</button>
+        <button *ngIf="quiz.id" (click)="null" mat-button>NEW</button>
+        <button *ngIf="!quiz.id" (click)="api.postQuiz(quiz)" mat-button>POST</button>
+    </mat-card-actions>
+</mat-card>
