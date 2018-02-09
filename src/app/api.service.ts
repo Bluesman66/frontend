@@ -5,13 +5,20 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class ApiService {
 
-    private selectedQuestion = new Subject();
+    private selectedQuestion = new Subject<any>();
     questionSelected = this.selectedQuestion.asObservable();
+
+    private selectedQuiz = new Subject<any>();
+    quizSelected = this.selectedQuiz.asObservable();
 
     constructor(private http: HttpClient) { }
 
     getQuestions() {
         return this.http.get('http://localhost:56487/api/questions');
+    }
+
+    getQuizzes() {
+        return this.http.get('http://localhost:56487/api/quizzes');
     }
 
     postQuestion(question) {
@@ -30,12 +37,23 @@ export class ApiService {
 
     postQuiz(quiz) {
         this.http.post('http://localhost:56487/api/quizzes', quiz)
-        .subscribe(res => {
-            console.log(res);
-        });
+            .subscribe(res => {
+                console.log(res);
+            });
+    }
+
+    putQuiz(quiz) {
+        this.http.put(`http://localhost:56487/api/quizzes/${quiz.id}`, quiz)
+            .subscribe(res => {
+                console.log(res);
+            });
     }
 
     selectQuestion(question) {
         this.selectedQuestion.next(question);
+    }
+
+    selectQuiz(quiz) {
+        this.selectedQuiz.next(quiz);
     }
 }
