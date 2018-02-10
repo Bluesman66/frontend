@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { ApiService } from './api.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'question',
