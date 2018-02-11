@@ -1,3 +1,4 @@
+import { LoginComponent } from './login.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,6 +29,7 @@ const routes = [
   { path: '', component: HomeComponent },
   { path: 'question/:quizId', component: QuestionComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'quiz', component: QuizComponent }
 ];
 
@@ -40,7 +42,8 @@ const routes = [
     NavComponent,
     QuizComponent,
     QuizzesComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
