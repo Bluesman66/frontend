@@ -7,22 +7,30 @@ export class AuthService {
 
     constructor(private http: HttpClient, private router: Router) { }
 
+    get isAuthenticated() {
+        return !!localStorage.getItem('token');
+    }
+
     register(credentials) {
         this.http.post<any>(`http://localhost:56487/api/account`, credentials)
-        .subscribe(res => {
-            this.authenticate(res);
-        });
+            .subscribe(res => {
+                this.authenticate(res);
+            });
     }
 
     login(credentials) {
         this.http.post<any>(`http://localhost:56487/api/account/login`, credentials)
-        .subscribe(res => {
-            this.authenticate(res);
-        });
+            .subscribe(res => {
+                this.authenticate(res);
+            });
     }
 
     authenticate(res) {
         localStorage.setItem('token', res);
         this.router.navigate(['/']);
+    }
+
+    logout() {
+        localStorage.removeItem('token');
     }
 }
