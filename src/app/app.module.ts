@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import {
@@ -22,11 +22,12 @@ import { QuizComponent } from './quiz.component';
 import { QuizzesComponent } from './quizzes.component';
 import { RegisterComponent } from './register.component';
 import { AuthService } from './auth.service';
+import { AuthInterceptor } from './auth.interceptor';
 
 const routes = [
   { path: '', component: HomeComponent },
-  { path: 'question/:quizId', component: QuestionComponent},
-  { path: 'register', component: RegisterComponent},
+  { path: 'question/:quizId', component: QuestionComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'quiz', component: QuizComponent }
 ];
 
@@ -54,7 +55,11 @@ const routes = [
     MatListModule,
     MatToolbarModule
   ],
-  providers: [ApiService, AuthService],
+  providers: [ApiService, AuthService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
